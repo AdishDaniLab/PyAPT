@@ -1,4 +1,3 @@
-(forked from mcleu/PyAPT)
 **APT is being replaced by kinesis. Please use [Instrumental](https://github.com/mabuchilab/Instrumental/) with Kinesis **
 
 PyAPT

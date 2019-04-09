@@ -16,7 +16,7 @@ from PyAPT.PyAPT import APTMotor
 import time
 
 # Create object corresponding to the motor.
-Motor1 = APTMotor(80831436, HWTYPE=29) # The number should correspond to the serial number.
+Motor1 = APTMotor(80828888, HWTYPE=29) # The number should correspond to the serial number.
 # Use help APTMotor to obtain full list of hardware (HW) supported.
 
 # Note: You can control multiple motors by creating more APTMotor Objects
@@ -44,6 +44,8 @@ def ApplyFilter(MotorHandle, ND):
 
 if __name__ == '__main__':
     #print(Motor1.getHardwareInformation())
+    Motor1.identify()
+    time.sleep(1)
     Motor1.initializeHardwareDevice()
     #print(Motor1.getPos())
     kapish = True

@@ -15,7 +15,7 @@ Michael Leung
 mcleung@stanford.edu
 """
 
-from ctypes import c_long, c_buffer, c_float, windll, pointer
+from ctypes import c_long, c_buffer, c_float, windll, pointer, c_ulong, c_byte
 
 import os
 #print (os.getcwd())
@@ -298,7 +298,7 @@ class APTMotor():
         return True
 
 
-        ''' Miscelaneous '''
+        ''' Miscellaneous '''
     def identify(self):
         '''
         Causes the motor to blink the Active LED
@@ -314,3 +314,11 @@ class APTMotor():
         self.aptdll.APTCleanUp()
         if self.verbose: print ('APT cleaned up')
         self.Connected = False
+
+    def getStatus(self):
+        '''
+        Requests the status of the motor. Status bits 0x00000100 indicates motor is connected.
+        '''
+        status = c_ulong()
+        self.aptdll.MOT_GetStatusBits(self.SerialNum, pointer(status))
+        
