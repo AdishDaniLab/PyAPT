@@ -74,8 +74,8 @@ class App(QWidget):
         print("Position =", position)
         print("Wavelength = ", wavelength)
         print('Done.')
-        filter_wheels.getPosition(wavelength)
-        posinfo = "Position : " + str(round(position, 2))
+        ang = filter_wheels.getPosition(wavelength)
+        posinfo = "Position : " + str(round(ang, 2))
         labels = [[561, self.label1], [488, self.label2], [460, self.label3], [405, self.label4]]
         for (wv, name) in labels:
             if wavelength == wv:
