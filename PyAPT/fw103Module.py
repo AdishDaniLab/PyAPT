@@ -14,7 +14,6 @@ class FW103S():
     def __init__(self):
         super().__init__()
         # Initializing motors
-        print("fw103s : Initializing motors...")
         try:
             self.Motor1 = APTMotor(80831436, HWTYPE=29)
             self.Motor2 = APTMotor(80831430, HWTYPE=29)
@@ -42,17 +41,13 @@ class FW103S():
         self.Motor2.cleanUpAPT()
         self.Motor3.cleanUpAPT()
         self.Motor4.cleanUpAPT()
-        print("fw103s : All motors shut down!")
 
     def initPositions(self):
         p561 = self.Motor1.getPos()
         p488 = self.Motor2.getPos()
         p460 = self.Motor3.getPos()
         p405 = self.Motor4.getPos()
-        # print("Positions :", p561, p488, p460, p405)
         positions = [p561, p488, p460, p405]
-        # positions = [0.0, 60.0, 0.0, 120.0]
-        print("fw103s : Found initial positions.")
         return positions
         
 
@@ -60,16 +55,16 @@ class FW103S():
 
         if wavelength == 561:
             self.Motor1.mAbs(position)
-            print('fw103s : Moving ',wavelength, ' filter wheel to position', position )
+            # print('fw103s : Moving ',wavelength, ' filter wheel to position', position )
         if wavelength == 488:
             self.Motor2.mAbs(position)
-            print('fw103s : Moving ',wavelength, ' filter wheel to position', position )
+            # print('fw103s : Moving ',wavelength, ' filter wheel to position', position )
         if wavelength == 460:
             self.Motor3.mAbs(position)
-            print('fw103s : Moving ',wavelength, ' filter wheel to position', position )
+            # print('fw103s : Moving ',wavelength, ' filter wheel to position', position )
         if wavelength == 405:
             self.Motor4.mAbs(position)
-            print('fw103s : Moving ',wavelength, ' filter wheel to position', position )
+            # print('fw103s : Moving ',wavelength, ' filter wheel to position', position )
         else:
             pass
 

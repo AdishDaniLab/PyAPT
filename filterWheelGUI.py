@@ -18,8 +18,6 @@ from PyAPT.PyAPT import APTMotor
 from PyAPT.fw103Module import FW103S
 
 filter_wheels = FW103S()
-print("Pretending filter wheels are initialized")
-
 
 class App(QWidget):
 
@@ -30,8 +28,8 @@ class App(QWidget):
         self.title = 'FW103S Control'
         self.left = 600
         self.top = 300
-        self.width = 550
-        self.height = 500
+        self.width = 400
+        self.height = 400
 
         self.positions = filter_wheels.initPositions()
 
@@ -61,7 +59,6 @@ class App(QWidget):
 
     @pyqtSlot()
     def setPosition(self, wavelength):
-        print('Moving to selected ND filter...')
         nd = [['ND 0', 0.0], ['ND 0.5', 60.0], ['ND 1', 120.0],
               ['ND 1.3', 180.0], ['ND 2', 240.0], ['ND 3', 300]]
         for (ndval, pos) in nd:
@@ -70,10 +67,6 @@ class App(QWidget):
             else:
                 pass
         filter_wheels.gotoPos(position,wavelength)
-        # Motor1.mAbs(position)
-        print("Position =", position)
-        print("Wavelength = ", wavelength)
-        print('Done.')
         ang = filter_wheels.getPosition(wavelength)
         posinfo = "Position : " + str(round(ang, 2))
         labels = [[561, self.label1], [488, self.label2], [460, self.label3], [405, self.label4]]
@@ -83,8 +76,6 @@ class App(QWidget):
             else:
                 pass
         
-        #return wavelength
-
     def fw561Control(self):
         groupBox = QGroupBox('561')
         grid = QGridLayout()
@@ -93,32 +84,17 @@ class App(QWidget):
         for i, name in enumerate(names):
             button = QRadioButton(name, self)
             button.clicked.connect(lambda: self.setPosition(wavelength))
-            # row, col = divmod(i, 5)
             grid.addWidget(button, i, 1)
             if i == 0:
                 button.setChecked(True)
             else:
                 pass
-
-        # b7 = QComboBox(self)
-        # angles = ('0.0', '60.0', '120.0', '180.0', '240.0', '300.0')
-        # for i, angle in enumerate(angles):
-        #     b7.addItem(angle)
-        # b7.activated[str].connect(self.gotoPosition)
-
-        # b8 = QPushButton('Disconnect', self)
-        # b8.clicked.connect(self.disconnectM)
-
         # Label saying position
         self.label1 = QLabel()
         posinfo = "Position : " + str(round(self.positions[0], 2))
         self.label1.setText(posinfo)
 
         grid.addWidget(self.label1, 2, 0)
-
-        # grid.addWidget(b7, 0, 0)
-        # grid.addWidget(b8, 1, 0)
-
         groupBox.setLayout(grid)
         return groupBox
 
@@ -130,14 +106,11 @@ class App(QWidget):
         for i, name in enumerate(names):
             button = QRadioButton(name, self)
             button.clicked.connect(lambda: self.setPosition(wavelength))
-            # row, col = divmod(i, 5)
             grid.addWidget(button, i, 1)
             if i == 0:
                 button.setChecked(True)
             else:
                 pass
-
-
         # Label saying position
         self.label2 = QLabel()
         posinfo = "Position : " + str(round(self.positions[1], 2))
@@ -155,7 +128,6 @@ class App(QWidget):
         for i, name in enumerate(names):
             button = QRadioButton(name, self)
             button.clicked.connect(lambda: self.setPosition(wavelength))
-            # row, col = divmod(i, 5)
             grid.addWidget(button, i, 1)
             if i == 0:
                 button.setChecked(True)
@@ -180,7 +152,6 @@ class App(QWidget):
         for i, name in enumerate(names):
             button = QRadioButton(name, self)
             button.clicked.connect(lambda: self.setPosition(wavelength))
-            # row, col = divmod(i, 5)
             grid.addWidget(button, i, 1)
             if i == 0:
                 button.setChecked(True)
@@ -201,5 +172,4 @@ if __name__ == '__main__':
     s = QStyleFactory.create('Fusion')
     app.setStyle(s)
     ex = App()
-    #dialog = Dialog()
     sys.exit(app.exec_())
