@@ -10,8 +10,11 @@ import traceback
 
 
 class FW103S():
-
+    '''
+    Initializing all filter-wheels
+    '''
     def __init__(self):
+
         super().__init__()
         # Initializing motors
         try:
@@ -37,12 +40,18 @@ class FW103S():
       
        
     def cleanUpAll(self):
+        '''
+        For releasing memory, terminating connection, etc
+        '''
         self.Motor1.cleanUpAPT()
         self.Motor2.cleanUpAPT()
         self.Motor3.cleanUpAPT()
         self.Motor4.cleanUpAPT()
 
     def initPositions(self):
+        '''
+        Gets all filter wheel positions on startup
+        '''
         p561 = self.Motor1.getPos()
         p488 = self.Motor2.getPos()
         p460 = self.Motor3.getPos()
@@ -52,6 +61,9 @@ class FW103S():
         
 
     def gotoPos(self, position, wavelength):
+        '''
+        Move specific filter wheel to specific postion
+        '''
 
         if wavelength == 561:
             self.Motor1.mAbs(position)
@@ -69,6 +81,9 @@ class FW103S():
             pass
 
     def getPosition(self,wavelength):
+        '''
+        Get position of speciifc filter wheel
+        '''
 
         if wavelength == 561:
             pos = self.Motor1.getPos()
