@@ -1,3 +1,8 @@
+[Note : Originally forked from Michael Leung's repo, in this branch, I used PyQt5 for the GUI. And this is specifc for thorlabs filter-wheel FW103S with TST001 T cube controllers. This simple gui is for controlling 4 such filter wheels fitted with ND filters at specific positions.
+
+Gayatri Chandran
+]
+
 **APT is being replaced by kinesis. Please use [Instrumental](https://github.com/mabuchilab/Instrumental/) with Kinesis **
 
 PyAPT
